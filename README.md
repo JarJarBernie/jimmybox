@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox
+# jimmybox: PHP 7 vagrant box
 vagrant box for PHP 7 Developers based on scotch box 2.5 with IonCube Integration for Shopware Development.
 
 ## Quick Setup:
@@ -10,8 +10,13 @@ vagrant box for PHP 7 Developers based on scotch box 2.5 with IonCube Integratio
 
 ## Shopware ready
 - use PHP 7 Performance in Shopware Development
+
 - 5x faster during development than 5.6
+
 - IonCube Loader for PHP 7
+
+##### Tip: Try NFS share instead of the synced folder. Just uncomment in your Vagrantfile
+
 
 ## Features
 - Ubuntu 14.04 LTS (Trusty Tahr)
