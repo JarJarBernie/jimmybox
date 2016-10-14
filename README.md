@@ -5,14 +5,14 @@ vagrant box for PHP 7 Developers based on scotch box 2.5 with IonCube Integratio
 
 ## Quick Setup:
 1) clone to any directory you like (f.e. mkdir ~/Vagrant/jimmybox && cd ~/Vagrant/jimmybox)
+
 2) git clone https://github.com/JarJarBernie/jimmybox.git .
+
 3) vagrant up
 
 ## Shopware ready
-- use PHP 7 Performance in Shopware Development
-
+- use PHP 7 Performance in Shopware
 - 5x faster during development than 5.6
-
 - IonCube Loader for PHP 7
 
 ##### Tip: Try NFS share instead of the synced folder. Just uncomment in your Vagrantfile
