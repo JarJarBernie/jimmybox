@@ -1,6 +1,11 @@
 # jimmybox
 vagrant box for PHP 7 Developers based on scotch box 2.5 with IonCube Integration for Shopware Development.
 
+## Quick Setup:
+- mkdir ~/Vagrant/jimmybox && cd ~/Vagrant/jimmybox
+- git clone https://github.com/JarJarBernie/jimmybox.git .
+- vagrant up
+
 ## Shopware ready
 - use PHP 7 Performance in Shopware
 - 3x faster than 5.6
