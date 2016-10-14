@@ -28,7 +28,7 @@ vagrant box for PHP 7 Developers based on scotch box 2.5 with IonCube Integratio
 - Username: root
 - Password: root
 
-## other features come from scotch box:
+## All features are based on scotch/box:
 https://github.com/scotch-io/scotch-box
 
 - Laravel ready
