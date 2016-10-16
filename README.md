@@ -1,7 +1,7 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 1.1: PHP 7 Developer box
-vagrant box for PHP 7 Developers IonCube Integration for professional Shopware Development. Works with many other applications and frameworks such as Magento, Wordpress, Typo3 or Laravel 5.3.
+# jimmybox 1.1: PHP 7 developer box
+vagrant box for PHP 7 Developers IonCube Integration for professional Shopware development. Works with many other applications and frameworks such as Magento, Wordpress, Typo3 or Laravel 5.3.
 
 ## Quick Setup:
 1) clone to any directory you like (f.e. mkdir ~/Vagrant/jimmybox && cd ~/Vagrant/jimmybox)
@@ -10,7 +10,7 @@ vagrant box for PHP 7 Developers IonCube Integration for professional Shopware D
 
 3) vagrant up
 
-## Made for PHP professionals and E-Commerce Developers
+## Made for PHP professionals and E-Commerce developers
 ### Shopware ready
 - tested with Shopware 5.2.8
 - use PHP 7 Performance in Shopware
