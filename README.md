@@ -57,8 +57,8 @@ vagrant up
 ## All features are based on scotch/box:
 https://github.com/scotch-io/scotch-box
 
-## Changes in 1.1.2
-disabled the strict mode of MySQL 5.7. You need to use strict mode?
+## How do I enable the MySQL 5.7 strict SQL mode
+We have disabled the strict SQL mode for better compatibility with older apps. You can simplay enable it doing this:
 
 ```bash
 vagrant ssh
