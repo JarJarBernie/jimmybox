@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 1.1.1: PHP 7 developer box
+# jimmybox 1.1.2: PHP 7 developer box
 vagrant box for PHP 7 Developers with IonCube Integration for professional Shopware development. Works with many other applications and frameworks such as Magento, Wordpress, Typo3 or Laravel 5.3.
 
 ## Quick Setup:
