@@ -56,3 +56,12 @@ vagrant up
 
 ## All features are based on scotch/box:
 https://github.com/scotch-io/scotch-box
+
+## Changes in 1.1.2
+disabled the strict mode of MySQL 5.7. You need to use strict mode?
+
+```bash
+vagrant ssh
+sudo rm /etc/mysql/conf.d/disable_strict_mode.cnf
+sudo service mysql restart
+```
