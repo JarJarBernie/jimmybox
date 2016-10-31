@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 1.1.2: PHP 7 developer box
+# jimmybox 1.1.3: PHP 7 developer box
 vagrant box for PHP 7 Developers with IonCube Integration for professional Shopware development. Works with many other applications and frameworks such as Magento, Wordpress, Typo3 or Laravel 5.3.
 
 ## Quick Setup:
@@ -20,8 +20,7 @@ vagrant up
 ### Shopware ready
 - tested with Shopware 5.2.9
 - use PHP 7 Performance in Shopware
-- 5x faster during development than PHP 5.6
-- comes with **IonCube Loader for PHP 7!**
+- comes with **APCu & IonCube Loader for PHP 7!**
 
 ##### Tip: Try NFS share instead of the synced folder. Just uncomment in your Vagrantfile
 
@@ -34,14 +33,17 @@ vagrant up
 
 ## Features
 - Ubuntu 14.04 LTS (Trusty Tahr)
+- VirtualBox Guest Additions 5.1.8
 - PHP 7.0.12
 - MySQL 5.7
 - IonCube Loader
+- APCu (*new)
 - Ruby 2.2.x
 - Vim
 - Git
 - cURL
 - GD and Imagick
+- imagick-php (*new)
 - Composer
 - Beanstalkd
 - Node
@@ -64,4 +66,13 @@ We have disabled the strict SQL mode for better compatibility with older apps. Y
 vagrant ssh
 sudo rm /etc/mysql/conf.d/disable_strict_mode.cnf
 sudo service mysql restart
+```
+
+## Troubles with APCu?
+In some cases, APCu could cause troubles. You can disable APCu using the following commands
+
+```bash
+vagrant ssh
+sudo apt-get remove php-apcu
+sudo service apache2 restart
 ```
