@@ -25,6 +25,9 @@ Vagrant.configure("2") do |config|
     # Private Network
     config.vm.network "private_network", ip: "192.168.33.11"
 
+    # port forwarding must be enabled for vagrant share
+    config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+
     # Public network:
     # uncomment the lines and add your own config (bridge, ip, etc.)
 

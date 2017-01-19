@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 1.1.3: PHP 7 developer box
+# jimmybox 1.1.4: PHP 7 developer box
 vagrant box for PHP 7 Developers with IonCube Integration for professional Shopware development. Works with many other applications and frameworks such as Magento, Wordpress, Typo3 or Laravel 5.3.
 
 ## Quick Setup:
@@ -18,7 +18,7 @@ vagrant up
 
 ## Made for PHP professionals and E-Commerce developers
 ### Shopware ready
-- tested with Shopware 5.2.9
+- tested with Shopware 5.2.14
 - use PHP 7 Performance in Shopware
 - comes with **APCu & IonCube Loader for PHP 7!**
 
@@ -34,7 +34,7 @@ vagrant up
 ## Features
 - Ubuntu 14.04 LTS (Trusty Tahr)
 - VirtualBox Guest Additions 5.1.8
-- PHP 7.0.12
+- PHP 7.0.14
 - MySQL 5.7
 - IonCube Loader
 - APCu (*new)
