@@ -20,17 +20,26 @@
 
     <div class="starter-template">
         <h1>Welcome to Jimmybox!</h1>
-        <p class="lead">Jimmybox is a modified Scotch/Box 2.5 with PHP 7 & IonCube Loader. <br><br><strong>Shopware Developers</strong> should try NFS share instead of the default synced folder. It performs much better! (Just uncomment the line in your Vagrantfile)
+        <p class="lead">Jimmybox is a multiple PHP developer box for professional E-Commerce developers. <br><br><strong>Shopware Developers</strong> should try NFS share instead of the default synced folder. It performs much better! (Just uncomment the line in your Vagrantfile)
         </p>
 
         <p class="row">
             <img class="col-xs-12" src="src/jimmybox.png">
         </p>
 
-        <p class="row">
-            <a href="https://scotch.io" target="_blank" class="btn btn-lg btn-default" >scotch.io</a> &nbsp;
+        <p class="row">&nbsp;
             <a href="https://www.sternpunkt.at" target="_blank" type="button" class="btn btn-lg btn-default">www.sternpunkt.at</a>&nbsp;
             <a href="info.php" target="_blank" type="button" class="btn btn-lg btn-default">show PHP Info</a>
+        </p>
+
+        <h3>Preconfigured Hosts</h3>
+        <p>
+            please edit your local hosts file to use this! <br><br>
+
+            <strong>PHP 7.2: </strong><a href="http://jimmy72.com">http://jimmy72.com</a><br>
+            <strong>PHP 7.1: </strong> <a href="http://jimmy71.com">http://jimmy71.com</a><br>
+            <strong>PHP 7.0: </strong> <a href="http://jimmy70.com">http://jimmy70.com</a><br>
+            <strong>PHP 5.6: </strong> <a href="http://jimmy56.com">http://jimmy56.com</a><br>
         </p>
 
     </div>

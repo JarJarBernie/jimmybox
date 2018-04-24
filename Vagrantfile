@@ -3,17 +3,6 @@
 
 Vagrant.configure("2") do |config|
 
-    # FIX vagrant share
-    ###########################################################################
-    # In some cases, we recognized that vagrant share breaks after some clicks
-    # We enabled --natdnshostresolver1 to fix this
-    #
-    # If you have troubles with this setting, please just disable the next 3 lines
-
-    config.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    end
-
     # BOX SETTINGS
     config.vm.box = "sternpunkt/jimmybox"
 
@@ -39,11 +28,11 @@ Vagrant.configure("2") do |config|
     ############################################################################
 
     # DEFAULT:
-    config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
+    config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
 
     # NFS:
     # you should try NFS share - it performs much better than the default synced folder!
-    # config.vm.synced_folder "./", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }
+    # config.vm.synced_folder "./", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
 
     # RSYNC:
     # if you are using a framework that contains many files rsync can provide best performance
