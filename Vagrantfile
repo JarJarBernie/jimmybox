@@ -28,15 +28,15 @@ Vagrant.configure("2") do |config|
     ############################################################################
 
     # DEFAULT:
-    config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
+    config.vm.synced_folder "./public", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
 
     # NFS:
     # you should try NFS share - it performs much better than the default synced folder!
-    # config.vm.synced_folder "./", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
+    # config.vm.synced_folder "./public", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
 
     # RSYNC:
     # if you are using a framework that contains many files rsync can provide best performance
     # You can use vagrant rsync-auto to sync changes automatically to your vagrant box.
-    # config.vm.synced_folder "./", "/var/www", type: "rsync", rsync__auto: true
+    # config.vm.synced_folder "./public", "/var/www", type: "rsync", rsync__auto: true
 
 end

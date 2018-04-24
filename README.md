@@ -128,3 +128,6 @@ ServerAlias jimmy72.sternpunkt.ngrok.io
 # after that, save the new settings and restart or reload your apache
 sudo service apache2 reload
 ```
+
+## upgrading from older Jimmybox Versions
+Please do not use vagrant box update if you were using older jimmybox versions! Better create a new version instead an migrate your data manually.
