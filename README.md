@@ -88,7 +88,7 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 ```
 
 #### open Jimmybox in your browser
-1) PHP 7.3: http://jimmy72.com
+1) PHP 7.3: http://jimmy73.com
 2) PHP 7.2: http://jimmy72.com
 3) PHP 7.1: http://jimmy71.com
 4) PHP 7.0: http://jimmy70.com
