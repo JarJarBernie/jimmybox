@@ -6,6 +6,11 @@ Vagrant.configure("2") do |config|
     # BOX SETTINGS
     config.vm.box = "sternpunkt/jimmybox"
 
+      config.vm.provider "virtualbox" do |v|
+          v.memory = 1024
+          v.customize ["modifyvm", :id, "--audio", "none"]
+        end
+
     # NETWORKING
     ############################################################################
 

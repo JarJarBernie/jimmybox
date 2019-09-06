@@ -1,7 +1,7 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 2.0: web developer box with multiple PHP Versions
-vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6, Wordpress, Typo3 or Laravel 5.6.
+# jimmybox 2.1: web developer box with multiple PHP Versions
+vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6, Wordpress, Typo3 or Laravel 5.8.
 
 ## Quick Setup:
 1) Get the latest Versions of Vagrant and Virtual Box
@@ -12,15 +12,15 @@ git clone https://github.com/JarJarBernie/jimmybox.git .
 vagrant up
 ```
 
-3) open **192.168.33.11** in your browser (default PHP Version is 7.2)
+3) open **192.168.33.11** in your browser (default PHP Version is 7.3)
 
 (IP can be changed in your Vagrantfile, the "public" directory is your document root)
 
 ## Made for PHP professionals and E-Commerce developers
 ### Shopware ready´
-- tested with Shopware 5.4
-- use PHP 7.2 Performance in Shopware
-- comes with **APCu & IonCube Loader for PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2!**
+- tested with Shopware 5.6
+- use PHP 7.2/7.3 Performance in Shopware
+- comes with **APCu & IonCube Loader for PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3!**
 - including Zend Guard Loader for PHP 5.6
 
 ##### Tip: Try NFS share instead of the synced folder. Just uncomment in your Vagrantfile
@@ -29,16 +29,17 @@ vagrant up
 - tested with Magento 2.2
 
 ### Laravel ready
-- tested with Laravel 5.6
+- tested with Laravel 5.8
 
 ### Oxid 6 ready
-- tested with Oxid 6 (PHP 7)
+- tested with Oxid 6.1 (PHP 7)
 - tested with Oxid PE 4.10 CE / PE (PHP 5.6)
 - tested with Oxid Enterprise 5.10 (PHP 5.6)
 
 ## Features
 - Ubuntu 16.04 LTS
 - VirtualBox Guest Additions
+- PHP 7.3 FPM
 - PHP 7.2 FPM
 - PHP 7.1 FPM
 - PHP 7.0 FPM
@@ -53,8 +54,8 @@ vagrant up
 - GD and Imagick
 - imagick-php
 - Composer
-- Node
-- NPM
+- Node.js (12.10)
+- NPM (6.9)
 - Mcrypt
 
 ## MySQL Access
@@ -81,13 +82,17 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 
 # PHP 7.2
 192.168.33.11  jimmy72.com
+
+# PHP 7.3
+192.168.33.11  jimmy73.com
 ```
 
 #### open Jimmybox in your browser
-1) PHP 7.2: http://jimmy72.com
-2) PHP 7.1: http://jimmy71.com
-3) PHP 7.0: http://jimmy70.com
-4) PHP 5.6: http://jimmy56.com
+1) PHP 7.3: http://jimmy72.com
+2) PHP 7.2: http://jimmy72.com
+3) PHP 7.1: http://jimmy71.com
+4) PHP 7.0: http://jimmy70.com
+5) PHP 5.6: http://jimmy56.com
 
 ## Need the MySQL 5.7 strict SQL mode?
 We have disabled the strict SQL mode for better compatibility with older apps. You can simply enable it doing this:
@@ -130,4 +135,4 @@ sudo service apache2 reload
 ```
 
 ## upgrading from older Jimmybox Versions
-Please do not use vagrant box update if you were using older jimmybox versions! Better create a new version instead an migrate your data manually.
+Please do not use vagrant box update if you are using jimmybox 1.x! Better create a new version instead an migrate your data manually.
