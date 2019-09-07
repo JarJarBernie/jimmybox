@@ -35,7 +35,7 @@
         <h3>Preconfigured Hosts</h3>
         <p>
             please edit your local hosts file to use this! <br><br>
-
+            <strong>PHP 7.3: </strong><a href="http://jimmy73.com">http://jimmy72.com</a><br>
             <strong>PHP 7.2: </strong><a href="http://jimmy72.com">http://jimmy72.com</a><br>
             <strong>PHP 7.1: </strong> <a href="http://jimmy71.com">http://jimmy71.com</a><br>
             <strong>PHP 7.0: </strong> <a href="http://jimmy70.com">http://jimmy70.com</a><br>
