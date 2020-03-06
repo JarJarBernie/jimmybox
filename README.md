@@ -73,7 +73,7 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 
 ```bash
 # PHP 7.4
-192.168.33.11  jimmy73.com
+192.168.33.11  jimmy74.com
 
 # PHP 7.3
 192.168.33.11  jimmy73.com
@@ -92,11 +92,12 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 ```
 
 #### open Jimmybox in your browser
-1) PHP 7.3: http://jimmy73.com
-2) PHP 7.2: http://jimmy72.com
-3) PHP 7.1: http://jimmy71.com
-4) PHP 7.0: http://jimmy70.com
-5) PHP 5.6: http://jimmy56.com
+- PHP 7.4: http://jimmy74.com
+- PHP 7.3: http://jimmy73.com
+- PHP 7.2: http://jimmy72.com
+- PHP 7.1: http://jimmy71.com
+- PHP 7.0: http://jimmy70.com
+- PHP 5.6: http://jimmy56.com
 
 ## Provisioning & custom hosts setup
 You can use our provisioning template to setup your custom hosts.
