@@ -29,7 +29,7 @@ vagrant up
 - tested with Magento 2.2
 
 ### Laravel ready
-- tested with Laravel 5.8
+- tested with Laravel 7
 
 ### Oxid 6 ready
 - tested with Oxid 6.1 (PHP 7.0 - 7.2)
