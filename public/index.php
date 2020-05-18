@@ -43,8 +43,7 @@
 
         <h3>Custom Hosts</h3>
         <p>
-            you can use our provisioning templates (directory: provisioning) to add your custom projects<br><br>
-            <strong>myproject.com: </strong><a href="http://myproject.com">http://myproject.com</a><br>
+            you can use our provisioning templates (directory: provisioning) to add your custom projects
         </p>
     </div>
 
