@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 2.2: web developer box with multiple PHP Versions
+# jimmybox 3.0: web developer box with multiple PHP Versions
 vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6, Wordpress, Typo3 or Laravel 5.8.
 
 ## Quick Setup:
@@ -19,11 +19,9 @@ vagrant up
 ## Made for PHP professionals and E-Commerce developers
 ### Shopware ready´
 - tested with Shopware 5.6
-- use PHP 7.2/7.3 Performance in Shopware
+- use PHP 7.4 in Shopware
 - comes with **APCu & IonCube Loader for all PHP Versions**
 - including Zend Guard Loader for PHP 5.6
-
-##### Tip: Try NFS share instead of the synced folder. Just uncomment in your Vagrantfile
 
 ### Magento ready
 - tested with Magento 2.2
@@ -32,19 +30,22 @@ vagrant up
 - tested with Laravel 7
 
 ### Oxid 6 ready
+- tested with Oxid 6.2 (PHP 7.1 - 7.4)
 - tested with Oxid 6.1 (PHP 7.0 - 7.2)
 - tested with Oxid PE 4.10 CE / PE (PHP 5.6)
 - tested with Oxid Enterprise 5.10 (PHP 5.6)
 
 ## Features
-- Ubuntu 16.04 LTS
+- Ubuntu 20.04 LTS
 - VirtualBox Guest Additions
+- Apache 2.4 with HTTP/2
 - PHP 7.4 FPM
 - PHP 7.3 FPM
 - PHP 7.2 FPM
 - PHP 7.1 FPM
 - PHP 7.0 FPM
 - MySQL 5.7
+- Zend Guard Loader (PHP 5.6)
 - IonCube Loader
 - APCu
 - Redis
@@ -55,9 +56,8 @@ vagrant up
 - GD and Imagick
 - imagick-php
 - Composer
-- Node.js (12.10)
-- NPM (6.9)
 - Mcrypt
+- increased disk size (128GB)
 
 ## MySQL Access
 
@@ -111,6 +111,22 @@ You can use our provisioning template to setup your custom hosts.
 vagrant reload --provision
 ````
 
+### Switching PHP Versions in your custom hosts
+
+Please include the following SetHandler directives in your custom vhost as seen in provisioning/hosts/100-myproject.conf.
+After that, you can simply uncomment the requested line and reload your apache config (sudo service apache2 reload)
+
+```
+<FilesMatch \.php>
+        SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php7.3-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php7.2-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php7.1-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php7.0-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php5.6-fpm.sock|fcgi://localhost/"
+</FilesMatch>
+```
+
 ## Need the MySQL 5.7 strict SQL mode?
 We have disabled the strict SQL mode for better compatibility with older apps. You can simply enable it doing this:
 
@@ -160,4 +176,9 @@ sudo service apache2 reload
 ```
 
 ## upgrading from older Jimmybox Versions
-Please do not use vagrant box update if you are using jimmybox 1.x! Better create a new version instead an migrate your data manually.
+Please do not use vagrant box update if you are using jimmybox < 3.0! Better create a new version instead an migrate your data manually.
+
+### Breaking Changes in V 3.0
+- Virtual Hosts: Switching PHP Versions has been changed - please use the Sethandler directives as shown in 100-myproject.conf
+- we do not include npm and node.js any more (smaller footprint)
+
