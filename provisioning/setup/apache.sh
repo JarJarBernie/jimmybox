@@ -8,6 +8,9 @@
 # copy all hosts to the sites_available directory
 sudo cp /usr/local/vagrant/hosts/* /etc/apache2/sites-available/
 
+# enable the default hosts
+sudo a2ensite 00*.conf
+
 # myproject.com
 # -------------------
 # if [ -d "/var/www/myproject.com/" ]; then

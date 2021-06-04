@@ -1,7 +1,7 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 3.0: web developer box with multiple PHP Versions
-vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6, Wordpress, Typo3 or Laravel 5.8.
+# jimmybox 3.1: web developer box with multiple PHP versions
+vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6.x, Wordpress, Typo3 or Laravel.
 
 ## Quick Setup:
 1) Get the latest Versions of Vagrant and Virtual Box
@@ -12,33 +12,34 @@ git clone https://github.com/JarJarBernie/jimmybox.git .
 vagrant up
 ```
 
-3) open **192.168.33.11** in your browser (default PHP Version is 7.3)
+3) open **192.168.33.11** in your browser (default PHP Version is 8.0)
 
 (IP can be changed in your Vagrantfile, the "public" directory is your document root)
 
 ## Made for PHP professionals and E-Commerce developers
-### Shopware ready´
-- tested with Shopware 5.6
-- use PHP 7.4 in Shopware
-- comes with **APCu & IonCube Loader for all PHP Versions**
-- including Zend Guard Loader for PHP 5.6
-
-### Magento ready
-- tested with Magento 2.2
-
-### Laravel ready
-- tested with Laravel 7
+### Laravel 8 ready
+- tested with Laravel 8
 
 ### Oxid 6 ready
+- tested with Oxid 6.3 (PHP 7.4 - 8.0)
 - tested with Oxid 6.2 (PHP 7.1 - 7.4)
 - tested with Oxid 6.1 (PHP 7.0 - 7.2)
 - tested with Oxid PE 4.10 CE / PE (PHP 5.6)
 - tested with Oxid Enterprise 5.10 (PHP 5.6)
 
+### Shopware ready´
+- tested with Shopware 5.6
+- comes with **APCu & IonCube Loader for all PHP < 8.0**
+- including Zend Guard Loader for PHP 5.6
+
+### Wordpress ready
+- tested with Wordpress 5.7
+
 ## Features
 - Ubuntu 20.04 LTS
 - VirtualBox Guest Additions
 - Apache 2.4 with HTTP/2
+- PHP 8.0 FPM
 - PHP 7.4 FPM
 - PHP 7.3 FPM
 - PHP 7.2 FPM
@@ -55,7 +56,7 @@ vagrant up
 - cURL
 - GD and Imagick
 - imagick-php
-- Composer
+- Composer 2.1
 - Mcrypt
 - increased disk size (128GB)
 
@@ -72,6 +73,9 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 #### Prepare your hosts file
 
 ```bash
+# PHP 8.0
+192.168.33.11  jimmy80.com
+
 # PHP 7.4
 192.168.33.11  jimmy74.com
 
@@ -92,6 +96,7 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 ```
 
 #### open Jimmybox in your browser
+- PHP 8.0: http://jimmy80.com
 - PHP 7.4: http://jimmy74.com
 - PHP 7.3: http://jimmy73.com
 - PHP 7.2: http://jimmy72.com
@@ -118,7 +123,8 @@ After that, you can simply uncomment the requested line and reload your apache c
 
 ```
 <FilesMatch \.php>
-        SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
+        SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.3-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.2-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.1-fpm.sock|fcgi://localhost/"
@@ -127,7 +133,39 @@ After that, you can simply uncomment the requested line and reload your apache c
 </FilesMatch>
 ```
 
-## Need the MySQL 5.7 strict SQL mode?
+-----
+
+# Upgrade
+
+### Upgrade from 3.0 to 3.1
+if you don't want to use ***vagrant box upgrade*** you can run ***vagrant reload --provision*** instead.
+This will run the commands in provisioning/setup/php.sh and install the newest versions of
+- PHP 5.6 - PHP 8.0
+- Composer
+
+```bash
+# if Jimmybox is running
+vagrant reload --provision
+
+# if Jimmybox is not running
+vagrant up --provision
+```
+
+### Upgrade from older version
+Please do not use vagrant box update if you are using jimmybox < 3.0! Create a new version instead an migrate your data manually.
+
+------
+
+# Known Issues
+
+## NFS Share in MacOS 10.15 (Catalina) / MacOS 11 (Big Sur)
+In Catalina (and sometimes Big Sur) NFS seems to have troubles finding a relative path in your synced folder.
+You can avoid this if you just use an absolute Path (/Volumes/...)
+```bash
+config.vm.synced_folder "/Volumes/Macintosh HD/Users/your-user/Sites", "/var/www", type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1']
+```
+
+## MySQL 5.7 strict SQL mode?
 We have disabled the strict SQL mode for better compatibility with older apps. You can simply enable it doing this:
 
 ```bash
@@ -145,40 +183,5 @@ sudo apt-get remove php-apcu
 sudo service apache2 restart
 ```
 
-## NFS Share in MacOS Catalina 10.15
-In Catalina NFS seems to have troubles finding a relative path in your synced folder.
-You can avoid this if you just use an absolute Path (/Volumes/...)
-```bash
-config.vm.synced_folder "/Volumes/Macintosh HD/Users/your-user/Sites", "/var/www", type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1']
-```
-
-
-## Vagrant sharing with ngrok.
-vagrant share has been removed with Vagrant 2.0. We use ngrok instead to share our boxes. Jimmybox is pre-configured for ngrok.
-
-Get started with ngrok here:
-https://ngrok.com
-
-You should customize the virtual hosts regarding to your needs
-
-```bash
-vagrant ssh
-cd /etc/apache2/sites-available
-
-# edit config file (f.e. 000-php7.1.conf)
-sudo vim any-config-file.conf
-
-# Change the ServerAlias or add your ngrok domain, for example
-ServerAlias jimmy72.sternpunkt.ngrok.io
-
-# after that, save the new settings and restart or reload your apache
-sudo service apache2 reload
-```
-
-## upgrading from older Jimmybox Versions
-Please do not use vagrant box update if you are using jimmybox < 3.0! Better create a new version instead an migrate your data manually.
-
-### Breaking Changes in V 3.0
-- Virtual Hosts: Switching PHP Versions has been changed - please use the Sethandler directives as shown in 100-myproject.conf
-- we do not include npm and node.js any more (smaller footprint)
-
+## ioncube loader for PHP 8.0
+by the date of the release the ioncube loader is not ready for PHP 8.0. We will implement this as soon if it's available.
