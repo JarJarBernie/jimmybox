@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
 
-# jimmybox 3.1: web developer box with multiple PHP versions
+# jimmybox 3.2: web developer box with multiple PHP versions
 vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6.x, Wordpress, Typo3 or Laravel.
 
 ## Quick Setup:
@@ -12,7 +12,7 @@ git clone https://github.com/JarJarBernie/jimmybox.git .
 vagrant up
 ```
 
-3) open **192.168.33.11** in your browser (default PHP Version is 8.0)
+3) open **192.168.33.11** in your browser (default PHP Version is 8.1)
 
 (IP can be changed in your Vagrantfile, the "public" directory is your document root)
 
@@ -21,6 +21,7 @@ vagrant up
 - tested with Laravel 8
 
 ### Oxid 6 ready
+- tested with Oxid 6.4 (PHP 7.4 - 8.1)
 - tested with Oxid 6.3 (PHP 7.4 - 8.0)
 - tested with Oxid 6.2 (PHP 7.1 - 7.4)
 - tested with Oxid 6.1 (PHP 7.0 - 7.2)
@@ -39,6 +40,7 @@ vagrant up
 - Ubuntu 20.04 LTS
 - VirtualBox Guest Additions
 - Apache 2.4 with HTTP/2
+- PHP 8.1 FPM
 - PHP 8.0 FPM
 - PHP 7.4 FPM
 - PHP 7.3 FPM
@@ -56,7 +58,7 @@ vagrant up
 - cURL
 - GD and Imagick
 - imagick-php
-- Composer 2.1
+- Composer 2.2
 - Mcrypt
 - increased disk size (128GB)
 
@@ -68,11 +70,14 @@ vagrant up
 
 ## Switching PHP-Versions:
 
-Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions from 5.6 to 7.4. Please just edit your local hosts file to use different PHP Versions.
+Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions from 5.6 to 8.1. Please just edit your local hosts file to use different PHP Versions.
 
 #### Prepare your hosts file
 
 ```bash
+# PHP 8.1
+192.168.33.11  jimmy81.com
+
 # PHP 8.0
 192.168.33.11  jimmy80.com
 
@@ -96,6 +101,7 @@ Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions fro
 ```
 
 #### open Jimmybox in your browser
+- PHP 8.1: http://jimmy81.com
 - PHP 8.0: http://jimmy80.com
 - PHP 7.4: http://jimmy74.com
 - PHP 7.3: http://jimmy73.com
@@ -123,7 +129,8 @@ After that, you can simply uncomment the requested line and reload your apache c
 
 ```
 <FilesMatch \.php>
-        SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/"
+        SetHandler "proxy:unix:/var/run/php/php8.1-fpm.sock|fcgi://localhost/"
+        # SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.3-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.2-fpm.sock|fcgi://localhost/"
@@ -133,17 +140,40 @@ After that, you can simply uncomment the requested line and reload your apache c
 </FilesMatch>
 ```
 
+### Modify php.ini settings
+
+Since Jimmybox 3.2 you can manage the php.ini settings from within the provisioning folder:
+
+- modify the php.ini files for php-fpm / php-cli in provisioning/php.ini/{php-version}/fpm/php.ini
+- after this perform a vagrant reload --provision
+
+````nashorn js
+vagrant reload --provision
+````
+
 -----
 
 # Upgrade
 
-### Upgrade from 3.0 to 3.1
+### Upgrade from 3.x to 3.2
 if you don't want to use ***vagrant box upgrade*** you can run ***vagrant reload --provision*** instead.
-This will run the commands in provisioning/setup/php.sh and install the newest versions of
-- PHP 5.6 - PHP 8.0
+This will run the commands in provisioning/setup/updates.sh and install the newest versions of
+- PHP 5.6 - PHP 8.1
 - Composer
 
+````bash
+# uncomment this line in your Vagrantfile:
+config.vm.provision "shell", path: "./provisioning/setup/updates.sh"
+````
+
 ```bash
+# prepare (Jimmybox must me running)
+vagrant ssh
+wget https://repo.mysql.com/mysql-apt-config_0.8.22-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
+sudo apt-get update
+sudo apt-get upgrade
+
 # if Jimmybox is running
 vagrant reload --provision
 
@@ -156,9 +186,27 @@ Please do not use vagrant box update if you are using jimmybox < 3.0! Create a n
 
 ------
 
-# Known Issues
+# Known issues & fixes
 
-## NFS Share in MacOS 10.15 (Catalina) / MacOS 11 (Big Sur)
+## MacOS Monterey Fixes (network and NFS share)
+
+After upgrading to MacOS 12.x Vagrant stops working due to an issue with Virtual Box (6.1.30). Until the issue is fixed, please use the following workaround:
+
+- add the following line to /etc/vbox/networks.conf (file does not exist by default and has to be created)
+
+```
+* 0.0.0.0/0 ::/0
+```
+
+Vagrant will also throw an error during startup concerning the NFS Share (nfs folders uninitialized constant error).
+You can fix this regarding to https://github.com/hashicorp/vagrant/issues/12583
+
+```
+sudo curl -o /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/plugins/hosts/darwin/cap/path.rb \ 
+ https://raw.githubusercontent.com/hashicorp/vagrant/42db2569e32a69e604634462b633bb14ca20709a/plugins/hosts/darwin/cap/path.rb 
+```
+
+## NFS Share in MacOS 10.15 (Catalina) / MacOS 11 (Big Sur) / MacOS 12 (Monterey)
 In Catalina (and sometimes Big Sur) NFS seems to have troubles finding a relative path in your synced folder.
 You can avoid this if you just use an absolute Path (/Volumes/...)
 ```bash
@@ -183,5 +231,5 @@ sudo apt-get remove php-apcu
 sudo service apache2 restart
 ```
 
-## ioncube loader for PHP 8.0
+## ioncube loader for PHP 8.0 / PHP 8.1
 by the date of the release the ioncube loader is not ready for PHP 8.0. We will implement this as soon if it's available.

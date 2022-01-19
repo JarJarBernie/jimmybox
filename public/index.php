@@ -17,12 +17,13 @@
             <img class="col-xs-12" src="src/jimmybox.png">
         </p>
 
-        <h1>Welcome to Jimmybox 3.1.0!</h1>
+        <h1>Welcome to Jimmybox 3.2.0!</h1>
         <p class="lead">Jimmybox is a developer box where you can switch PHP versions easily.</p>
 
         <h3>Preconfigured Hosts</h3>
         <p>
             please edit your local hosts file to use this! <br><br>
+            <strong>PHP 8.0: </strong><a href="http://jimmy81.com">http://jimmy81.com</a><br>
             <strong>PHP 8.0: </strong><a href="http://jimmy80.com">http://jimmy80.com</a><br>
             <strong>PHP 7.4: </strong><a href="http://jimmy74.com">http://jimmy74.com</a><br>
             <strong>PHP 7.3: </strong><a href="http://jimmy73.com">http://jimmy73.com</a><br>
